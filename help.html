@@ -177,7 +177,7 @@
           <details>
             <summary>Do I have to install her myself?</summary>
             <div class="answer">
-              <p>It is an installer like any other program. If you would like company, <a href="#contact" data-talk="Help with the setup">talk to us</a> and we set her up with you on a call.</p>
+              <p>It is an installer like any other program. If you would like company, <a href="mailto:support@worksailor.in?subject=Work%20Sailor%3A%20Help%20with%20the%20setup" data-talk="Help with the setup">talk to us</a> and we set her up with you on a call.</p>
             </div>
           </details>
           <details>
@@ -351,12 +351,12 @@
       <div class="faq-group" id="contact">
         <h2 class="title">Talk to us</h2>
         <div class="panel" style="max-width:800px">
-          <div data-if="has_contact" hidden>
+          <div data-if="has_contact">
             <p>Write to us about a plan, a payment, the setup, or anything she is doing that you did not expect.</p>
-            <p data-if="support_email" hidden style="margin-top:14px"><span class="small muted">E-mail</span><br><a class="h3" data-s="support_email" data-tpl-href="mailto:{support_email}" href="mailto:"></a></p>
+            <p data-if="support_email" style="margin-top:14px"><span class="small muted">E-mail</span><br><a class="h3" data-s="support_email" data-tpl-href="mailto:{support_email}" href="mailto:support@worksailor.in">support@worksailor.in</a></p>
             <p data-if="wa_link" hidden style="margin-top:14px"><span class="small muted">WhatsApp</span><br><a class="h3" data-tpl-href="{wa_link}" href="" rel="noopener">Message us on WhatsApp</a></p>
           </div>
-          <div data-unless="has_contact">
+          <div data-unless="has_contact" hidden>
             <p><b>Our contact address will be here before launch.</b></p>
             <p>It is not published yet. When it is, every “Talk to us” button on this site will open an e-mail to it.</p>
           </div>
@@ -393,7 +393,7 @@
       <nav class="foot-col" aria-label="Help">
         <h2>Help</h2>
         <a data-nav href="help.html" aria-current="page">Questions and answers</a>
-        <a href="#contact" data-talk="">Talk to us</a>
+        <a href="mailto:support@worksailor.in" data-talk="">Talk to us</a>
         <a data-if="wa_link" data-tpl-href="{wa_link}" rel="noopener" href="" hidden>Message us on WhatsApp</a>
         <a data-if="status_url" data-tpl-href="{status_url}" rel="noopener" href="https://licence.worksailor.in/status">Service status</a>
       </nav>

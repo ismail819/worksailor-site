@@ -67,7 +67,7 @@
       <!-- site.js asks the server how the payment of this tab went and puts its answer here. Without an answer, these words stay. -->
       <p class="lead" data-payment-status aria-live="polite">If you have just paid, your licence key and the download links are on their way by e-mail.</p>
       <p style="margin-top:14px"><button class="btn compact" type="button" data-check-again hidden>Check again</button></p>
-      <p class="muted" style="margin-top:14px;max-width:40em" data-thanks-own>Your key is never shown on this website. It comes by e-mail, to the address you gave. If it has not arrived, look in your spam folder, then <a href="help.html#contact" data-talk="My licence e-mail has not arrived">talk to us</a>.</p>
+      <p class="muted" style="margin-top:14px;max-width:40em" data-thanks-own>Your key is never shown on this website. It comes by e-mail, to the address you gave. If it has not arrived, look in your spam folder, then <a href="mailto:support@worksailor.in?subject=Work%20Sailor%3A%20My%20licence%20e-mail%20has%20not%20arrived" data-talk="My licence e-mail has not arrived">talk to us</a>.</p>
 
       <!-- Shown instead of the setup below when this tab bought a plan we run on our servers (site.js decides). -->
       <div data-thanks-hosted hidden>
@@ -88,7 +88,7 @@
         </ol>
         <div class="actions">
           <a class="btn" href="pricing.html#managed">Questions about Managed</a>
-          <a class="btn quiet" href="help.html#contact" data-talk="Setting up Managed">Talk to us</a>
+          <a class="btn quiet" href="mailto:support@worksailor.in?subject=Work%20Sailor%3A%20Setting%20up%20Managed" data-talk="Setting up Managed">Talk to us</a>
         </div>
       </div>
 
@@ -142,7 +142,7 @@
       <nav class="foot-col" aria-label="Help">
         <h2>Help</h2>
         <a data-nav href="help.html">Questions and answers</a>
-        <a href="help.html#contact" data-talk="">Talk to us</a>
+        <a href="mailto:support@worksailor.in" data-talk="">Talk to us</a>
         <a data-if="wa_link" data-tpl-href="{wa_link}" rel="noopener" href="" hidden>Message us on WhatsApp</a>
         <a data-if="status_url" data-tpl-href="{status_url}" rel="noopener" href="https://licence.worksailor.in/status">Service status</a>
       </nav>

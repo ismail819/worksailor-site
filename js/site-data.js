@@ -6,7 +6,7 @@ window.SITE = {
   "tagline": "Your digital employee, on WhatsApp.",
   "promise": "She does the work, you stay in charge.",
   "domain": "https://worksailor.in",
-  "support_email": "",
+  "support_email": "support@worksailor.in",
   "support_whatsapp": "",
   "api_base": "https://licence.worksailor.in",
   "status_url": "https://licence.worksailor.in/status",
@@ -105,7 +105,7 @@ window.SITE = {
   "company": {
     "legal_name": "",
     "address": "",
-    "email": "",
+    "email": "support@worksailor.in",
     "governing_law": "",
     "courts": ""
   },
