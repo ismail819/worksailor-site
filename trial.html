@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-page="trial"
+  data-title="Start your {trial_days}-day free trial · {name}"
+  data-desc="Try {name}, your digital employee on WhatsApp, free for {trial_days} days. The full product, no payment first.">
+<head>
+<!--head-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Start your 14-day free trial · Work Sailor</title>
+<meta name="description" content="Try Work Sailor, your digital employee on WhatsApp, free for 14 days. The full product, no payment first.">
+<link rel="canonical" href="https://worksailor.in/trial.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Work Sailor">
+<meta property="og:title" content="Start your 14-day free trial · Work Sailor">
+<meta property="og:description" content="Try Work Sailor, your digital employee on WhatsApp, free for 14 days. The full product, no payment first.">
+<meta property="og:url" content="https://worksailor.in/trial.html">
+<meta property="og:image" content="https://worksailor.in/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="img/mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/site.css">
+<script src="js/site-data.js" defer></script>
+<script src="js/site.js" defer></script>
+<!--/head-->
+</head>
+<body>
+<!--header-->
+<a class="skip" href="#main">Skip to the page</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="lockup" href="index.html"><img src="img/mark.svg" width="32" height="32" alt=""><span data-s="name">Work Sailor</span></a>
+    <nav class="nav" aria-label="Main">
+      <a data-nav href="features.html">What she does</a>
+      <a data-nav href="pricing.html">Pricing</a>
+      <a data-nav href="download.html">Download</a>
+      <a data-nav href="help.html">Help</a>
+    </nav>
+    <a class="btn tint compact bar-cta" href="trial.html">Start free trial</a>
+    <details class="menu">
+      <summary aria-label="Menu">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </summary>
+      <nav class="menu-panel" aria-label="Menu">
+        <a data-nav href="features.html">What she does</a>
+        <a data-nav href="pricing.html">Pricing</a>
+        <a data-nav href="download.html">Download</a>
+        <a data-nav href="help.html">Help</a>
+        <a class="btn brand wide" href="trial.html"><span data-s="trial_cta">Start your 14-day free trial</span></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<!--/header-->
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+
+      <!-- Free trials are not open yet: shown while "api_base" in data/site.json is empty. -->
+      <div class="panel" id="trial-soon" data-unless="can_trial" style="max-width:720px" hidden>
+        <p class="eyebrow">Free trial</p>
+        <h1 class="page-title" style="font-size:clamp(1.9rem,3vw + 1rem,2.75rem)">Free trials open soon.</h1>
+        <p class="lead">We are getting the <span data-s="trial_days">14</span>-day free trial ready. It is not open yet, so nothing has been started for you. Talk to us and we will tell you the day it opens.</p>
+        <div class="actions">
+          <a class="btn brand big" href="help.html#contact" data-talk="Tell me when free trials open">Talk to us</a>
+          <a class="btn big" href="pricing.html">See pricing</a>
+        </div>
+      </div>
+
+      <!-- The trial form: shown once "api_base" is set. -->
+      <div id="trial-ask" data-if="can_trial">
+        <div class="form-wrap">
+          <div>
+            <p class="eyebrow">Free trial</p>
+            <h1 class="page-title">Start your <span class="nowrap"><span data-s="trial_days">14</span>-day</span> free trial</h1>
+            <p class="lead">The full product for <span data-s="trial_days">14</span> days, with your own team and your own documents. No payment first.</p>
+
+            <form class="form" id="trial-form" style="margin-top:32px">
+              <div class="form-two">
+                <div class="field">
+                  <label for="t-name">Your name</label>
+                  <input class="input" id="t-name" name="name" type="text" autocomplete="name" required maxlength="120">
+                </div>
+                <div class="field">
+                  <label for="t-company">Company</label>
+                  <input class="input" id="t-company" name="company" type="text" autocomplete="organization" required maxlength="160">
+                </div>
+              </div>
+              <div class="form-two">
+                <div class="field">
+                  <label for="t-email">Work e-mail</label>
+                  <input class="input" id="t-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="t-email-hint">
+                  <span class="hint" id="t-email-hint">Your trial key and the download links go here.</span>
+                </div>
+                <div class="field">
+                  <label for="t-country">Country</label>
+                  <input class="input" id="t-country" name="country" type="text" autocomplete="country-name" required maxlength="80" value="India">
+                </div>
+              </div>
+              <div class="check">
+                <input id="t-terms" name="accept_terms" type="checkbox" required>
+                <label for="t-terms">I agree to the <a href="terms.html">Terms</a> and the <a href="privacy.html">Privacy</a> page.</label>
+              </div>
+              <p class="form-status" data-form-status role="alert"></p>
+              <div><button class="btn brand big" type="submit"><span data-s="trial_cta">Start your 14-day free trial</span></button></div>
+              <p class="form-foot">We use these details to send your trial key and to write to you about your trial.</p>
+              <noscript><p class="notice warn"><span>This form needs JavaScript. If you would rather not switch it on, <a href="help.html#contact">talk to us</a> and we will start your trial for you.</span></p></noscript>
+            </form>
+          </div>
+
+          <aside class="aside-card" aria-label="What happens next">
+            <h2>What happens next</h2>
+            <ol class="numbered">
+              <li><b>We e-mail you</b>Your trial key and the download links.</li>
+              <li><b>You set her up</b>Install the app, link her WhatsApp number, send her how you work. About ten minutes.</li>
+              <li><b>She works for <span data-s="trial_days">14</span> days</b>The full product. Nothing held back.</li>
+            </ol>
+            <p class="small muted">When the <span data-s="trial_days">14</span> days are over she pauses until you buy a plan. Nothing is deleted.</p>
+            <p class="small muted">You will need a new SIM for her WhatsApp number and a Windows PC or Mac that can stay on. <a href="download.html">What to have ready</a></p>
+            <p class="small muted">The trial runs on your own machine, also if you are thinking about the Managed plan, where we run her on our servers. There is no trial of that plan; <a href="help.html#contact" data-talk="A question about Managed">talk to us</a> about it.</p>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Shown only after the server has answered the form. -->
+      <div class="panel" id="trial-done" hidden style="max-width:720px">
+        <img src="img/mark.svg" width="48" height="48" alt="">
+        <h2 data-trial-message>Check your inbox. Your trial key and the download links are on their way.</h2>
+        <p>We sent them to <b data-trial-email></b>. If nothing has arrived in a few minutes, look in your spam folder, then <a href="help.html#contact" data-talk="My trial e-mail has not arrived">talk to us</a>.</p>
+        <h3 style="margin-top:28px">The ten-minute setup</h3>
+        <ol class="numbered">
+          <li><b>Install the app</b>On a Windows PC or a Mac in your office that can stay on all day. Enter the trial key.</li>
+          <li><b>Link her WhatsApp number</b>A new SIM in any spare phone. Scan the code the app shows.</li>
+          <li><b>Send her how you work</b>Your team list, price lists, a past quote, the routines you repeat.</li>
+        </ol>
+        <div class="actions"><a class="btn" href="download.html">What to have ready</a></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!--footer-->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="lockup" href="index.html"><img src="img/mark.svg" width="32" height="32" alt="" loading="lazy"><span data-s="name">Work Sailor</span></a>
+        <p><span data-s="tagline">Your digital employee, on WhatsApp.</span> <span data-s="promise">She does the work, you stay in charge.</span></p>
+        <p class="social" data-if="has_social" hidden>
+          <a data-if="social.linkedin" data-tpl-href="{social.linkedin}" rel="noopener" href="" hidden>LinkedIn</a>
+          <a data-if="social.x" data-tpl-href="{social.x}" rel="noopener" href="" hidden>X</a>
+          <a data-if="social.instagram" data-tpl-href="{social.instagram}" rel="noopener" href="" hidden>Instagram</a>
+          <a data-if="social.youtube" data-tpl-href="{social.youtube}" rel="noopener" href="" hidden>YouTube</a>
+        </p>
+      </div>
+      <nav class="foot-col" aria-label="Product">
+        <h2>Product</h2>
+        <a data-nav href="features.html">What she does</a>
+        <a data-nav href="pricing.html">Pricing</a>
+        <a data-nav href="trial.html" aria-current="page">Start a free trial</a>
+        <a data-nav href="buy.html">Buy a plan</a>
+        <a data-nav href="download.html">Download</a>
+      </nav>
+      <nav class="foot-col" aria-label="Help">
+        <h2>Help</h2>
+        <a data-nav href="help.html">Questions and answers</a>
+        <a href="help.html#contact" data-talk="">Talk to us</a>
+        <a data-if="wa_link" data-tpl-href="{wa_link}" rel="noopener" href="" hidden>Message us on WhatsApp</a>
+        <a data-if="status_url" data-tpl-href="{status_url}" rel="noopener" href="https://licence.worksailor.in/status">Service status</a>
+      </nav>
+      <nav class="foot-col" aria-label="Legal">
+        <h2>Legal</h2>
+        <a data-nav href="terms.html">Terms</a>
+        <a data-nav href="privacy.html">Privacy</a>
+        <a data-nav href="refunds.html">Refunds and cancellation</a>
+      </nav>
+    </div>
+    <div class="foot-small">
+      <p>&copy; <span data-s="year">2026</span> <span data-s="owner">Work Sailor</span></p>
+      <p>WhatsApp is a trademark of its owner. <span data-s="name">Work Sailor</span> is an independent product that works on WhatsApp. It is not affiliated with, sponsored by or endorsed by WhatsApp. Other companies are named on this site only to say which services she works with; their names belong to them.</p>
+    </div>
+  </div>
+</footer>
+<!--/footer-->
+</body>
+</html>

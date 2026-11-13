@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-page="buy"
+  data-title="Buy a plan · {name}"
+  data-desc="Subscribe to {name}, your digital employee on WhatsApp, buy the Own AI key licence once, or let us run her for you on the Managed plan. Pay by {payments.methods}; payments are handled by {payments.provider}.">
+<head>
+<!--head-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Buy a plan · Work Sailor</title>
+<meta name="description" content="Subscribe to Work Sailor, your digital employee on WhatsApp, buy the Own AI key licence once, or let us run her for you on the Managed plan. Pay by UPI or card; payments are handled by Razorpay.">
+<link rel="canonical" href="https://worksailor.in/buy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Work Sailor">
+<meta property="og:title" content="Buy a plan · Work Sailor">
+<meta property="og:description" content="Subscribe to Work Sailor, your digital employee on WhatsApp, buy the Own AI key licence once, or let us run her for you on the Managed plan. Pay by UPI or card; payments are handled by Razorpay.">
+<meta property="og:url" content="https://worksailor.in/buy.html">
+<meta property="og:image" content="https://worksailor.in/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16181d" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="img/mark.svg" type="image/svg+xml">
+<link rel="alternate icon" href="img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/site.css">
+<script src="js/site-data.js" defer></script>
+<script src="js/site.js" defer></script>
+<!--/head-->
+</head>
+<body>
+<!--header-->
+<a class="skip" href="#main">Skip to the page</a>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="lockup" href="index.html"><img src="img/mark.svg" width="32" height="32" alt=""><span data-s="name">Work Sailor</span></a>
+    <nav class="nav" aria-label="Main">
+      <a data-nav href="features.html">What she does</a>
+      <a data-nav href="pricing.html">Pricing</a>
+      <a data-nav href="download.html">Download</a>
+      <a data-nav href="help.html">Help</a>
+    </nav>
+    <a class="btn tint compact bar-cta" href="trial.html">Start free trial</a>
+    <details class="menu">
+      <summary aria-label="Menu">
+        <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </summary>
+      <nav class="menu-panel" aria-label="Menu">
+        <a data-nav href="features.html">What she does</a>
+        <a data-nav href="pricing.html">Pricing</a>
+        <a data-nav href="download.html">Download</a>
+        <a data-nav href="help.html">Help</a>
+        <a class="btn brand wide" href="trial.html"><span data-s="trial_cta">Start your 14-day free trial</span></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<!--/header-->
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+
+      <!-- Buying online is not open yet: shown while "api_base" in data/site.json is empty, no plan has a price, or
+           "buying_open" is false. -->
+      <div class="panel" id="buy-soon" data-unless="can_buy" style="max-width:720px">
+        <p class="eyebrow">Buy a plan</p>
+        <h1 class="page-title" style="font-size:clamp(1.9rem,3vw + 1rem,2.75rem)">To buy a plan, talk to us.</h1>
+        <p class="lead">Paying on this website is not switched on yet, and nothing has been charged or ordered. Talk to us and we will set you up ourselves. You can start your free trial today and keep everything she has learnt when you buy.</p>
+        <div class="actions">
+          <a class="btn brand big" href="help.html#contact" data-talk="I would like to buy a plan">Talk to us</a>
+          <a class="btn big" href="trial.html"><span data-s="trial_cta">Start your 14-day free trial</span></a>
+        </div>
+      </div>
+
+      <!-- The form: shown once "api_base" is set. -->
+      <div id="buy-ask" data-if="can_buy" hidden>
+        <div class="form-wrap">
+          <div>
+            <p class="eyebrow">Buy a plan</p>
+            <h1 class="page-title" data-buy-title>Subscribe</h1>
+            <p class="lead"><span data-for-own>A few details for your licence and your invoice.</span><span data-for-hosted hidden>A few details for setting her up and for your invoice.</span> You see the full amount, with GST, before you pay.</p>
+
+            <form class="form" id="buy-form" style="margin-top:32px">
+              <div class="field">
+                <label for="b-plan">Plan</label>
+                <select class="select" id="b-plan" name="plan" required>
+<!--plan-options-->
+<option value="starter">Starter</option><option value="team">Team</option><option value="business">Business</option><option value="own-key">Own AI key</option><option value="managed">Managed</option>
+<!--/plan-options-->
+                </select>
+              </div>
+              <fieldset class="field">
+                <legend>How you pay</legend>
+                <div class="choice">
+                  <label><input type="radio" name="period" value="monthly" checked><span>Monthly</span></label>
+                  <label><input type="radio" name="period" value="yearly"><span>Yearly</span></label>
+                  <label data-if="once_price"><input type="radio" name="period" value="once"><span>Pay once</span></label>
+                </div>
+              </fieldset>
+              <p class="summary-line" data-buy-summary aria-live="polite"></p>
+
+              <div class="form-two">
+                <div class="field">
+                  <label for="b-name">Your name</label>
+                  <input class="input" id="b-name" name="name" type="text" autocomplete="name" required maxlength="120">
+                </div>
+                <div class="field">
+                  <label for="b-company">Company</label>
+                  <input class="input" id="b-company" name="company" type="text" autocomplete="organization" required maxlength="160">
+                </div>
+              </div>
+              <div class="field">
+                <label for="b-email">Work e-mail</label>
+                <input class="input" id="b-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="b-email-hint">
+                <span class="hint" id="b-email-hint"><span data-for-own>Your licence key, the download links and your invoice go here.</span><span data-for-hosted hidden>Her address and your invoice go here.</span></span>
+              </div>
+              <div class="form-two">
+                <div class="field">
+                  <label for="b-country">Country</label>
+                  <input class="input" id="b-country" name="country" type="text" autocomplete="country-name" required maxlength="80" value="India">
+                </div>
+                <div class="field" data-india>
+                  <label for="b-state">State</label>
+                  <select class="select" id="b-state" name="state" autocomplete="address-level1" required>
+                    <option value="">Choose your state</option>
+                    <option>Andaman and Nicobar Islands</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                    <option>Bihar</option><option>Chandigarh</option><option>Chhattisgarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option>
+                    <option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                    <option>Jammu and Kashmir</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Ladakh</option>
+                    <option>Lakshadweep</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option>
+                    <option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Puducherry</option><option>Punjab</option>
+                    <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option>
+                    <option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field" data-india>
+                <label for="b-gstin">GST number <span class="opt">(optional)</span></label>
+                <input class="input mono" id="b-gstin" name="gstin" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="15"
+                  pattern="[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]" title="15 characters, as on your GST certificate" aria-describedby="b-gstin-hint">
+                <span class="hint" id="b-gstin-hint">If you give it, it goes on your invoice.</span>
+              </div>
+              <div class="field">
+                <label for="b-address">Billing address</label>
+                <textarea class="input" id="b-address" name="billing_address" autocomplete="street-address" required maxlength="500" rows="3"></textarea>
+              </div>
+              <div class="check">
+                <input id="b-terms" name="accept_terms" type="checkbox" required>
+                <label for="b-terms">I agree to the <a href="terms.html">Terms</a>, the <a href="privacy.html">Privacy</a> page and the <a href="refunds.html">Refunds and cancellation</a> page.</label>
+              </div>
+              <p class="form-status" data-form-status role="alert"></p>
+              <div><button class="btn brand big" type="submit">See the total and pay</button></div>
+              <noscript><p class="notice warn"><span>This form needs JavaScript. If you would rather not switch it on, <a href="help.html#contact">talk to us</a> and we will set you up.</span></p></noscript>
+            </form>
+          </div>
+
+          <aside class="aside-card" aria-label="What happens next">
+            <h2>What happens next</h2>
+            <ol class="numbered">
+              <li><b>You see the total</b>The plan’s price and the GST, before anything is paid.</li>
+              <li><b>You pay by <span data-s="payments.methods">UPI or card</span></b>On <span data-s="payments.provider">Razorpay</span>’s own page. Your card or UPI details are entered there, not here.</li>
+              <li data-for-own><b>We e-mail you</b>Your licence key, the download links and your invoice.</li>
+              <li data-for-hosted hidden><b>We set her up on our servers</b>And e-mail you her address, usually within one working day. Nothing to install: your team opens her dashboard in a browser.</li>
+            </ol>
+            <p class="small muted" data-for-hosted hidden>On the Managed plan your company’s chats, files and what she knows are stored on our servers, and our support staff can sign in to her dashboard to help (you can switch that off). The <a href="pricing.html#managed">Managed questions</a> say what else is different.</p>
+            <p class="small muted">Each month or year is paid from a payment link we e-mail you before it is due; nothing is taken automatically. <span data-if="once_price">A licence bought once never renews. </span>You can cancel a subscription at any time: see <a href="refunds.html">Refunds and cancellation</a>.</p>
+            <p class="small muted" data-for-own>Would you rather try her first? <a href="trial.html"><span data-s="trial_cta">Start your 14-day free trial</span></a></p>
+            <p class="small muted" data-for-hosted hidden>Would you rather talk first? <a href="help.html#contact" data-talk="A question about Managed">Talk to us</a>. The free trial runs on your own machine.</p>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Shown only after the server has opened a checkout. -->
+      <div class="panel" id="buy-pay" hidden style="max-width:640px">
+        <h2>Check the total, then pay</h2>
+        <dl class="pay-rows" data-pay-rows></dl>
+        <p class="small muted">You pay on <span data-s="payments.provider">Razorpay</span>’s own page, by <span data-s="payments.methods">UPI or card</span>. <span data-for-own>Your licence key and the download links come by e-mail once the payment has gone through.</span><span data-for-hosted hidden>Once the payment has gone through we set her up on our servers and e-mail you her address.</span></p>
+        <div class="actions">
+          <a class="btn brand big" data-pay-link href="buy.html" rel="noopener">Pay by <span data-s="payments.methods">UPI or card</span></a>
+          <button class="btn big" type="button" data-buy-back>Change something</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!--footer-->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="lockup" href="index.html"><img src="img/mark.svg" width="32" height="32" alt="" loading="lazy"><span data-s="name">Work Sailor</span></a>
+        <p><span data-s="tagline">Your digital employee, on WhatsApp.</span> <span data-s="promise">She does the work, you stay in charge.</span></p>
+        <p class="social" data-if="has_social" hidden>
+          <a data-if="social.linkedin" data-tpl-href="{social.linkedin}" rel="noopener" href="" hidden>LinkedIn</a>
+          <a data-if="social.x" data-tpl-href="{social.x}" rel="noopener" href="" hidden>X</a>
+          <a data-if="social.instagram" data-tpl-href="{social.instagram}" rel="noopener" href="" hidden>Instagram</a>
+          <a data-if="social.youtube" data-tpl-href="{social.youtube}" rel="noopener" href="" hidden>YouTube</a>
+        </p>
+      </div>
+      <nav class="foot-col" aria-label="Product">
+        <h2>Product</h2>
+        <a data-nav href="features.html">What she does</a>
+        <a data-nav href="pricing.html">Pricing</a>
+        <a data-nav href="trial.html">Start a free trial</a>
+        <a data-nav href="buy.html" aria-current="page">Buy a plan</a>
+        <a data-nav href="download.html">Download</a>
+      </nav>
+      <nav class="foot-col" aria-label="Help">
+        <h2>Help</h2>
+        <a data-nav href="help.html">Questions and answers</a>
+        <a href="help.html#contact" data-talk="">Talk to us</a>
+        <a data-if="wa_link" data-tpl-href="{wa_link}" rel="noopener" href="" hidden>Message us on WhatsApp</a>
+        <a data-if="status_url" data-tpl-href="{status_url}" rel="noopener" href="https://licence.worksailor.in/status">Service status</a>
+      </nav>
+      <nav class="foot-col" aria-label="Legal">
+        <h2>Legal</h2>
+        <a data-nav href="terms.html">Terms</a>
+        <a data-nav href="privacy.html">Privacy</a>
+        <a data-nav href="refunds.html">Refunds and cancellation</a>
+      </nav>
+    </div>
+    <div class="foot-small">
+      <p>&copy; <span data-s="year">2026</span> <span data-s="owner">Work Sailor</span></p>
+      <p>WhatsApp is a trademark of its owner. <span data-s="name">Work Sailor</span> is an independent product that works on WhatsApp. It is not affiliated with, sponsored by or endorsed by WhatsApp. Other companies are named on this site only to say which services she works with; their names belong to them.</p>
+    </div>
+  </div>
+</footer>
+<!--/footer-->
+</body>
+</html>
