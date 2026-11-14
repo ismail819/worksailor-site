@@ -104,7 +104,15 @@
   /* ------------------------------------------------------------------------------------------ the plans
      One card per plan. tools/build.py draws the same cards into pricing.html for people without JavaScript:
      change one, change the other. */
-  function planCard(p, period, V) {
+  /* The list "different" of the plans we run on our servers (hosted: true), when every one of them has the same list:
+     it is then said once, under the cards. Empty when they differ, and each card then says its own. The same as
+     shared_different in tools/build.py. */
+  function sharedDifferent(main) {
+    var lists = main.filter(function (p) { return p.hosted; }).map(function (p) { return Array.isArray(p.different) ? p.different.filter(Boolean) : []; });
+    var first = lists[0] || [], key = JSON.stringify(first);
+    return first.length && lists.every(function (l) { return JSON.stringify(l) === key; }) ? first : [];
+  }
+  function planCard(p, period, V, diffShared) {
     var price = priceOf(p, period), has = isNum(price), cur = p.currency || 'INR';
     var cta = esc(V.trial_cta);
     var quiet = !p.ai_included, hot = !!p.highlight && !quiet;
@@ -129,6 +137,11 @@
     out += '<p>' + esc(p.allowance || (p.ai_included ? 'Monthly allowance announced soon' : 'You pay your AI provider directly for what she uses.')) + '</p></div>';
     var feats = Array.isArray(p.features) ? p.features.filter(Boolean) : [];
     if (feats.length) out += '<ul class="ticks">' + feats.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>';
+    var diff = Array.isArray(p.different) ? p.different.filter(Boolean) : [];
+    if (diff.length && !diffShared) {
+      out += '<div class="plan-diff"><h4 class="plan-diff-h">What is different on our servers</h4>';
+      out += '<ul class="dots">' + diff.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
+    }
     out += '<div class="plan-actions"><a class="btn' + (hot ? ' brand' : '') + '" href="trial.html">' + cta + '</a>';
     out += '<a class="btn quiet" href="help.html#contact" data-talk="' + esc(p.name) + ' plan">Talk to us</a></div>';
     return out + onceBlock(p, V) + '</article>';
@@ -149,45 +162,24 @@
     out += '<div class="plan-once-act"><a class="btn" href="' + esc(href) + '">Pay once</a></div>';
     return out + '</div>';
   }
-  /* A plan we run on our own servers (hosted: true, the Managed plan): its own wide card under the others, with what
-     we do and, said plainly, what is different. No trial button and no paying once. The same as hosted_card in
-     tools/build.py. */
-  function costHtml(p, period, V) {
-    var price = priceOf(p, period), cur = p.currency || 'INR';
-    if (!isNum(price)) return '<p class="plan-price soon">Price announced soon</p>';
-    var out = '<p class="plan-price"><span class="amount">' + esc(money(price, cur)) + '</span> <span class="per">' + (period === 'yearly' ? 'a year' : 'a month') + '</span></p>';
-    var s = saving(p);
-    if (period === 'yearly' && s) out += '<p class="plan-saving">' + (s.months ? monthsFree(s.months) + ': you save ' : 'You save ') + esc(money(s.amount, cur)) + ' a year</p>';
-    else if (period !== 'yearly' && isNum(p.price_yearly)) out += '<p class="plan-alt">or ' + esc(money(p.price_yearly, cur)) + ' a year' + (s && s.months ? ', ' + monthsFree(s.months) : '') + '</p>';
-    return out + '<p class="plan-note">' + esc(V.price_note || '') + '</p>';
-  }
-  function hostedCard(p, period, V) {
-    var href = 'buy.html?plan=' + encodeURIComponent(p.id) + (period === 'yearly' ? '&period=yearly' : '');
-    var out = '<article class="plan plan-host" data-plan="' + esc(p.id) + '"><div class="plan-host-main">';
-    out += '<div class="plan-top"><h3 class="plan-name">' + esc(p.name) + '</h3>';
-    out += '<p class="plan-blurb">' + esc(p.blurb || '') + '</p></div>';
-    out += '<div class="plan-cost">' + costHtml(p, period, V) + '</div>';
-    out += '<div class="plan-ai"><span class="tag info">AI included</span><p>' + esc(p.allowance || 'Monthly allowance announced soon') + '</p></div>';
-    out += '<div class="plan-actions"><a class="btn" href="' + esc(href) + '">Buy ' + esc(p.name) + '</a>';
-    out += '<a class="btn quiet" href="help.html#contact" data-talk="' + esc(p.name) + ' plan">Talk to us</a></div>';
-    out += '</div><div class="plan-host-more">';
-    var feats = Array.isArray(p.features) ? p.features.filter(Boolean) : [];
-    if (feats.length) out += '<h4 class="plan-host-h">What we do</h4><ul class="ticks">' + feats.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul>';
-    var diff = Array.isArray(p.different) ? p.different.filter(Boolean) : [];
-    if (diff.length) out += '<div class="plan-host-diff"><h4 class="plan-host-h">What is different on this plan</h4><ul class="dots">' + diff.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
-    return out + '</div></article>';
-  }
+  /* The plans with AI included as the main cards (today they all run on our servers: hosted true), then, said once,
+     what is different on our servers, then the plans with your own AI key, which run on a computer of yours. The same
+     as plans_html in tools/build.py. */
   function plansHtml(S, period) {
     var V = values(S), all = plans(S);
-    var main = all.filter(function (p) { return p.ai_included && !p.hosted; }), other = all.filter(function (p) { return !p.ai_included && !p.hosted; });
-    var hosted = all.filter(function (p) { return p.hosted; });
-    var out = '';
-    if (main.length) out += '<div class="plans plans-' + Math.min(main.length, 4) + '">' + main.map(function (p) { return planCard(p, period, V); }).join('') + '</div>';
-    if (other.length) out += '<div class="plans-quiet">' + other.map(function (p) { return planCard(p, period, V); }).join('') + '</div>';
-    if (hosted.length) {
-      out += '<div class="plans-host"><div class="plans-host-head"><p class="eyebrow">Or we run her for you</p>';
-      out += '<p class="plans-host-lead">The same employee, on our servers instead of a machine in your office.</p></div>';
-      out += hosted.map(function (p) { return hostedCard(p, period, V); }).join('') + '</div>';
+    var main = all.filter(function (p) { return p.ai_included; }), other = all.filter(function (p) { return !p.ai_included; });
+    var shared = sharedDifferent(main), out = '';
+    if (main.length) out += '<div class="plans plans-' + Math.min(main.length, 4) + '">' + main.map(function (p) { return planCard(p, period, V, shared.length > 0); }).join('') + '</div>';
+    if (shared.length) {
+      out += '<div class="plans-diff"><h3 class="plans-diff-h">What is different when she runs on our servers</h3>';
+      out += '<ul class="dots">' + shared.map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('') + '</ul></div>';
+    }
+    if (other.length) {
+      if (main.some(function (p) { return p.hosted; })) {
+        out += '<div class="plans-sub"><p class="eyebrow">Or run her yourself</p>';
+        out += '<p class="plans-sub-lead">With your own AI key, on one Windows PC or Mac in your office that stays on.</p></div>';
+      }
+      out += '<div class="plans-quiet">' + other.map(function (p) { return planCard(p, period, V); }).join('') + '</div>';
     }
     return out;
   }
@@ -246,7 +238,8 @@
        paymentStatus()       POST {api_base}/buy/status     {checkout}
                              answers {message, hosted}: a sentence for the thank-you page. The licence key is never
                              shown on the website; it comes by e-mail. hosted true: a plan we run on our servers
-                             (Managed), which has no key and no downloads; the page then shows what happens instead.
+                             (every plan with AI included), which has no key and no downloads; the page then shows
+                             what happens instead.
 
      When the server refuses, the sentence it sends ("error", "message" or "detail") is shown as it is.
      While api_base is empty nothing is sent and the answer says, in plain words, that this opens soon: the site

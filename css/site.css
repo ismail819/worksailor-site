@@ -480,24 +480,20 @@ fieldset.field { border: 0; margin: 0; padding: 0; min-width: 0; }
   @supports (grid-template-columns: subgrid) { .plan-wide .plan-once { grid-template-columns: subgrid; } }
   .plan-wide .plan-once-what { padding-inline: 16px; }   /* its words start where the words of the box above start */
 }
-/* A plan we run on our servers (hosted in site.json, the Managed plan): its own band under the other plans. The left
-   half is the card's usual parts; the right half says what we do and, plainly, what is different on this plan. */
-.plans-host { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
-.plans-host-head { margin-bottom: 20px; }
-.plans-host-lead { margin-top: 6px; color: var(--ink2); font-size: 1.0625rem; line-height: 1.5; max-width: 36em; }
-.plan-host { display: grid; gap: 28px; }
-.plan-host-main { display: flex; flex-direction: column; }
-.plan-host-main .plan-blurb { min-height: 0; }
-.plan-host-h { font-size: 1rem; line-height: 1.4; font-weight: 650; color: var(--ink); }
-.plan-host-more { font-size: .9688rem; line-height: 1.5; }
-.plan-host-more .ticks { margin-top: 12px; margin-bottom: 0; }
-.plan-host-diff { margin-top: 24px; padding: 18px 20px; border-radius: var(--r-lg); background: var(--sunk); }
-.plan-host-diff .dots { margin-top: 10px; color: var(--ink2); }
-.plan-host-diff .dots > li + li { margin-top: 8px; }
-@media (min-width: 940px) {
-  .plan-host { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 48px; padding: 32px 36px; }
-  .plan-host-more { padding-top: 4px; }
-}
+/* Plans we run on our servers (hosted in site.json: every plan with AI included). What is different there, said
+   plainly, sits once under their cards when every such plan says the same (.plans-diff), or else in each card
+   (.plan-diff). The plans with your own AI key follow under a small heading of their own (.plans-sub). */
+.plans-diff { margin-top: 20px; padding: 22px 24px; border-radius: var(--r-xl); background: var(--sunk); font-size: .9688rem; line-height: 1.5; }
+.plans-diff-h, .plan-diff-h { font-size: 1rem; line-height: 1.4; font-weight: 650; color: var(--ink); }
+.plans-diff .dots { display: grid; gap: 10px 32px; margin-top: 12px; color: var(--ink2); }
+.plans-diff .dots > li + li { margin-top: 0; }
+@media (min-width: 800px) { .plans-diff { padding: 26px 32px; } .plans-diff .dots { grid-template-columns: 1fr 1fr; } }
+.plan-diff { margin-bottom: 24px; padding: 16px; border-radius: var(--r-lg); background: var(--sunk); font-size: .9375rem; line-height: 1.5; }
+.plan-diff .dots { margin-top: 8px; color: var(--ink2); }
+.plan-diff .dots > li + li { margin-top: 6px; }
+.plans-sub { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--line); }
+.plans-sub-lead { margin-top: 6px; color: var(--ink2); font-size: 1.0625rem; line-height: 1.5; max-width: 36em; }
+.plans-sub + .plans-quiet { margin-top: 20px; }
 .every { margin-top: 48px; padding: 28px 24px; border-radius: var(--r-xl); background: var(--plane); }
 .every h2, .every h3 { font-size: 1.25rem; line-height: 1.3; font-weight: 650; letter-spacing: -.012em; margin-bottom: 16px; }
 .every .ticks { display: grid; gap: 12px 32px; }
